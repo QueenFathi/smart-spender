@@ -23,3 +23,17 @@ export interface Question {
   difficulty: 'Easy' | 'Medium' | 'Hard'
   category: string
 }
+
+export interface quizQuestions {
+  id: number
+  chapter: string
+  category: string
+  question: string
+  options: string[]
+  correctAnswer: number
+  difficulty: 'Easy' | 'Medium' | 'Hard'
+  hint: string
+  points: number
+  speedMode: boolean
+  explanation: string
+}

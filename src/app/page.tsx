@@ -463,8 +463,6 @@ export default function Home() {
           </AnimatedSection>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

@@ -9,7 +9,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { PiggyBank, Zap, CheckCircle, XCircle, ArrowRight, ArrowLeft, Trophy, Star, Clock, Brain, Target, RotateCcw } from 'lucide-react'
 import Link from "next/link"
-import { sampleQuestions } from "@/lib/dummydata"
+import { sampleQuestions } from "@/lib/chapter-data"
+import Navbar from "@/components/layout/Navbar"
 
 export default function QuizPage() {
     const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -149,29 +150,10 @@ export default function QuizPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100">
-            {/* Header */}
-            <header className="px-4 lg:px-6 h-16 flex items-center border-b bg-white/90 backdrop-blur-sm">
-                <Link href="/" className="flex items-center justify-center">
-                    <div className="relative">
-                        <PiggyBank className="h-8 w-8 text-green-500" />
-                        <Zap className="h-4 w-4 text-yellow-500 absolute -top-1 -right-1" />
-                    </div>
-                    <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-                        Smart Spender
-                    </span>
-                </Link>
-                <nav className="ml-auto flex gap-4 sm:gap-6">
-                    <Link href="/learn" className="text-sm font-medium hover:text-green-500 transition-colors">
-                        Learn
-                    </Link>
-                    <Link href="/quiz" className="text-sm font-medium text-green-500">
-                        Quiz
-                    </Link>
-                </nav>
-            </header>
+
+            <Navbar />
 
             <div className="container mx-auto px-4 py-8 max-w-2xl">
-                {/* Progress Header */}
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
                         <div>
@@ -190,7 +172,6 @@ export default function QuizPage() {
                     </div>
                 </div>
 
-                {/* Question Card */}
                 <Card className="mb-6">
                     <CardHeader>
                         <div className="flex items-center justify-between mb-2">
@@ -241,8 +222,8 @@ export default function QuizPage() {
                         ) : (
                             <div className="space-y-4">
                                 <div className={`p-4 rounded-lg flex items-start gap-3 ${parseInt(selectedAnswer) === currentQ.correctAnswer
-                                        ? 'bg-green-50 border border-green-200'
-                                        : 'bg-red-50 border border-red-200'
+                                    ? 'bg-green-50 border border-green-200'
+                                    : 'bg-red-50 border border-red-200'
                                     }`}>
                                     {parseInt(selectedAnswer) === currentQ.correctAnswer ? (
                                         <CheckCircle className="h-6 w-6 text-green-500 mt-0.5" />
@@ -286,29 +267,18 @@ export default function QuizPage() {
                     </CardContent>
                 </Card>
 
-                {/* Quick Stats */}
                 <div className="grid grid-cols-3 gap-4">
-                    <Card className="text-center border-green-200">
-                        <CardContent className="p-4">
-                            <Clock className="h-6 w-6 text-green-500 mx-auto mb-2" />
-                            <div className="text-sm text-gray-600">Time</div>
-                            <div className="font-semibold">5 min</div>
-                        </CardContent>
-                    </Card>
-                    <Card className="text-center border-yellow-200">
-                        <CardContent className="p-4">
-                            <Star className="h-6 w-6 text-yellow-500 mx-auto mb-2" />
-                            <div className="text-sm text-gray-600">Points</div>
-                            <div className="font-semibold">+250</div>
-                        </CardContent>
-                    </Card>
-                    <Card className="text-center border-blue-200">
-                        <CardContent className="p-4">
-                            <Brain className="h-6 w-6 text-blue-500 mx-auto mb-2" />
-                            <div className="text-sm text-gray-600">Level</div>
-                            <div className="font-semibold">Beginner</div>
-                        </CardContent>
-                    </Card>
+                    {[{ text: "Time", value: "5 min", color: "green" },
+                    { text: "Points", value: "+250", color: "yellow" },
+                    { text: "Level", value: "Beginner", color: "blue" }].map((item, index) => (
+                        <Card key={index} className={`text-center border-${item.color}-200`}>
+                            <CardContent className="p-4">
+                                <Clock className={`h-6 w-6 text-${item.color}-500 mx-auto mb-2`} />
+                                <div className="text-sm text-gray-600">{item.text}</div>
+                                <div className="font-semibold">{item.value}</div>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </div>

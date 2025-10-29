@@ -3,15 +3,15 @@
 }
 
 .markdown h1 {
-  @apply text-3xl font-bold my-4;
+  @apply text-2xl font-bold my-4;
 }
 
 .markdown h2 {
-  @apply text-2xl font-semibold mt-8 mb-3;
+  @apply text-xl font-semibold mt-8 mb-3;
 }
 
 .markdown h3 {
-  @apply text-xl font-semibold my-2;
+  @apply text-lg font-semibold my-2;
 }
 
 .markdown h4 {

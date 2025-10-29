@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { getChapterData } from "@/lib/api";
 import markdownStyles from "@/components/global/markdown-styles.module.css"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertCircle, ArrowLeft, ArrowRight, BookOpen, Brain, Calculator, CheckCircle, Clock, CreditCard, FileText, Headphones, Lightbulb, Loader2, PiggyBank, Play, Star, Target, TrendingUp, Video } from "lucide-react";
+import { AlertCircle, ArrowLeft, ArrowRight, BookOpen, Brain, Calculator, CheckCircle, Clock, CreditCard, FileText, Headphones, Lightbulb, PiggyBank, Play, Star, Target, TrendingUp, Video } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -325,7 +325,7 @@ export default function Page() {
                                         onClick={handleCompleteLesson}
                                         className="bg-green-500 hover:bg-green-600"
                                     >
-                                        {currentLesson.quiz && !showQuizResult ? 'Complete Lesson' : ''}Next Lesson
+                                        {currentLesson.quiz && !showQuizResult ? 'Complete Lesson' : 'Next Lesson'}
                                         <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 )}

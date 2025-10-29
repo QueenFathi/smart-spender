@@ -2,7 +2,7 @@ export interface Chapter {
     slug: string;
     title: string;
     description: string;
-    icon: string
+    icon: string;
     difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
     duration: string
     lessons: Lesson[]

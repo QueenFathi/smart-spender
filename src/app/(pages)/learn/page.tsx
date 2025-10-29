@@ -10,11 +10,21 @@ import { BookOpen, Play, Users, Brain, BarChart3, AlertCircle } from 'lucide-rea
 import Navbar from "@/components/layout/Navbar"
 import AnimatedText from "@/components/global/AnimatedText"
 import AnimatedSection from "@/components/global/AnimatedSection"
-import ChapterCard from "@/components/global/ChapterCard"
+import ChapterCard from "@/components/learn/ChapterCard"
 import QuizCard from "@/components/global/QuizCard"
 import ChapterCardSkeleton from "@/components/skeleton/ChapterCardSkeleton"
 import { quizzes } from "@/lib/chapter-data"
-import { Chapter } from "@/interfaces/chapter"
+
+interface Chapter {
+        slug: string,
+        title: string,
+        description: string,
+        icon: React.ElementType,
+        difficulty: 'Beginner' | 'Intermediate' | 'Advanced',
+        duration: string,
+        color: string,
+        lessonCount: number,
+    }
 
 export default function LearnPage() {
     const [allChapters, setChapter] = useState<Chapter[]>([])
@@ -40,7 +50,6 @@ export default function LearnPage() {
 
         fetchChapterData()
     }, [])
-    console.log(allChapters)
 
     // const [selectedChapter, setSelectedChapter] = useState<Chapter | null>(null)
 

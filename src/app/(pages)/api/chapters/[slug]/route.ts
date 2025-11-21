@@ -1,12 +1,12 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { chaptersData } from "@/lib/chapter-data"
 
-export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   try {
     // Simulate API delay for realistic experience
     await new Promise((resolve) => setTimeout(resolve, 100))
 
-    const slug = params.slug
+    const { slug } = await params
     const chapter = chaptersData[slug]
 
     if (!chapter) {

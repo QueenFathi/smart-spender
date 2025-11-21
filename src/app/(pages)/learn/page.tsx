@@ -69,8 +69,8 @@ export default function LearnPage() {
                 <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <AnimatedText text="Your Learning Journey" className="text-3xl font-bold text-gray-900" />
-                            <p className="text-gray-600 mt-1">Master financial skills through interactive lessons and quizzes</p>
+                            <AnimatedText text="Your Learning Journey" className="text-2xl sm:text-3xl font-bold text-gray-900" />
+                            <p className="text-sm md:text-base text-gray-600 mt-1">Master financial skills through interactive lessons and quizzes</p>
                         </div>
                         <div className="text-right">
                             <div className="text-2xl font-bold text-green-500">0</div>

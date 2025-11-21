@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Metadata } from 'next';
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import Footer from "@/components/layout/Footer";
@@ -15,14 +16,17 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Smart Spender",
   description: "Making financial education fun and effective",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark:bg-slate-900 dark:text-white`}
       >

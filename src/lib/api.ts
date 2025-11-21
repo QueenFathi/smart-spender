@@ -1,3 +1,5 @@
+import { sql } from '@vercel/postgres';
+
 import { Chapter } from "@/interfaces/chapter";
 // import fs from "fs/promises"; // <-- use promises API
 // import matter from "gray-matter";
@@ -111,3 +113,6 @@ export async function updateLessonProgress(
     return false
   }
 }
+
+
+

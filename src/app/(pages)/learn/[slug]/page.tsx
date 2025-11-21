@@ -14,7 +14,14 @@ import { Button } from "@/components/ui/button";
 import { Chapter } from "@/interfaces/chapter";
 import Navbar from "@/components/layout/Navbar";
 import ChapterPageSkeleton from "@/components/skeleton/ChapterPageSkeleton";
+import { SaveProgressModal } from "@/components/global/SaveProgressModal";
+import { useSession } from "next-auth/react";
 
+interface LessonPageProps {
+    params: {
+        slug: string;
+    };
+}
 
 export default function Page() {
     const params = useParams()
@@ -26,6 +33,15 @@ export default function Page() {
     const [showQuiz, setShowQuiz] = useState(false)
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
     const [showQuizResult, setShowQuizResult] = useState(false)
+    const [showModal, setShowModal] = useState(false);
+
+    const saveProgress = async () => {
+        await fetch("/api/progress", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ slug: params.slug }),
+        });
+    };
 
     useEffect(() => {
         async function fetchChapterData() {
@@ -113,8 +129,15 @@ export default function Page() {
             setShowQuiz(true)
         } else {
             handleNextLesson()
+            const lessonsElement = document.getElementById('lessons');
+            if (lessonsElement) {
+                lessonsElement.scrollIntoView({ behavior: 'smooth' });
+            }
         }
+        setShowModal(true)
     }
+
+
 
     const getContentTypeIcon = (type: string) => {
         switch (type) {
@@ -140,8 +163,8 @@ export default function Page() {
                                 <IconComponent className="h-6 w-6" />
                             </div>
                             <div>
-                                <h1 className="text-3xl font-bold text-gray-900">{chapter.title}</h1>
-                                <p className="text-gray-600">{chapter.description}</p>
+                                <h1 className="text-xl md:text-3xl font-bold text-gray-900">{chapter.title}</h1>
+                                <p className="text-sm md:text-base text-gray-600">{chapter.description}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 mb-4">
@@ -165,7 +188,7 @@ export default function Page() {
                     </div>
                     <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
                         <div className="space-y-4">
-                            <h3 className="font-semibold text-lg">Lessons</h3>
+                            <h3 className="font-semibold text-lg" id="lessons">Lessons</h3>
                             <div className="space-y-2">
                                 {chapter.lessons.map((lesson, index) => (
                                     <Card
@@ -331,6 +354,11 @@ export default function Page() {
                                 )}
                             </div>
                         </div>
+                        <SaveProgressModal
+                            open={showModal}
+                            onClose={() => setShowModal(false)}
+                            chapterSlug={slug}
+                        />
                     </div>
                 </div>
             </div>

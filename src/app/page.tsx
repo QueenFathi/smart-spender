@@ -105,7 +105,7 @@ export default function Home() {
                     </Badge>
                   </div>
                   <h2 className="text-4xl font-bold tracking-tighter sm:text-6xl">
-                    Ready to Win Money?
+                    Ready to Save Money?
                   </h2>
                   <p className="max-w-[600px] text-green-100 md:text-xl leading-relaxed">
                     Join 50,000+ players who've already transformed their financial lives.

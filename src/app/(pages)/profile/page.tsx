@@ -1,9 +1,16 @@
-import Logo from "@/components/layout/Logo";
+import { auth } from "auth";
+import { redirect } from "next/navigation";
 
-export default function Page () {
-    return(
-        <div className="m-20">
-        <Logo />
-            </div>
-    )
+export default async function ProfilePage() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login?callbackUrl=/profile");
+  }
+
+  return (
+    <div>
+      <h1>Your Profil</h1>
+    </div>
+  );
 }

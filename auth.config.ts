@@ -10,12 +10,15 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
 
       // Protected routes
-      const protectedRoutes = ["/profile"];
+      const protectedRoutes = ["/learn"];
       const isProtected = protectedRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
       );
 
-      if (isProtected && !isLoggedIn) {
+      if (isProtected) {
+        if (isLoggedIn) return true;
+        return false; // Redirect unauthenticated users to login page
+      } else if (isLoggedIn) {
         // Redirect user to login WITH callbackUrl preserved
         const loginUrl = new URL("/login", nextUrl);
         loginUrl.searchParams.set("callbackUrl", nextUrl.pathname);

@@ -121,7 +121,7 @@ export function LessonContentSkeleton() {
 
 export default function ChapterPageSkeleton() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100">
+    <div className="min-h-screen bg-linear-to-br from-green-50 via-yellow-50 to-green-100">
       {/* Header */}
       <header className="px-4 lg:px-6 h-16 flex items-center border-b bg-white/90 backdrop-blur-sm">
         <div className="flex items-center justify-center">
@@ -129,7 +129,7 @@ export default function ChapterPageSkeleton() {
             <div className="h-8 w-8 bg-green-500 rounded" />
             <div className="h-4 w-4 bg-yellow-500 rounded absolute -top-1 -right-1" />
           </div>
-          <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+          <span className="ml-2 text-2xl font-bold bg-linear-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
             Smart Spender
           </span>
         </div>

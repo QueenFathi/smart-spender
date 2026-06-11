@@ -68,8 +68,8 @@ export const features: Features[] = [
         title: "Budget Like a Pro",
         description:
             "Turn budgeting from a chore into a game with our interactive challenges",
-        gradient: "from-green-500 to-green-600",
-        borderColor: "hover:border-green-500",
+        gradient: "bg-primary",
+        borderColor: "hover:border-primary",
         icon: Calculator,
         features: [
             "Smart budget templates",
@@ -82,8 +82,8 @@ export const features: Features[] = [
         title: "Savings Superpower",
         description:
             "Build your emergency fund and reach goals faster with our proven system",
-        gradient: "from-yellow-500 to-yellow-600",
-        borderColor: "hover:border-yellow-500",
+        gradient: "bg-secondary",
+        borderColor: "hover:border-secondary",
         icon: PiggyBank,
         features: [
             "Automated savings challenges",
@@ -96,8 +96,8 @@ export const features: Features[] = [
         title: "Investment Mastery",
         description:
             "Learn investing without risking real money through our advanced simulator",
-        gradient: "from-green-600 to-green-700",
-        borderColor: "hover:border-green-500",
+        gradient: "bg-primary",
+        borderColor: "hover:border-primary",
         icon: TrendingUp,
         features: [
             "Risk-free trading simulator",
@@ -110,8 +110,8 @@ export const features: Features[] = [
         title: "Credit Score Booster",
         description:
             "Understand and improve your credit through interactive lessons and tracking",
-        gradient: "from-yellow-600 to-yellow-700",
-        borderColor: "hover:border-yellow-500",
+        gradient: "bg-secondary",
+        borderColor: "hover:border-secondary",
         icon: CreditCard,
         features: [
             "Credit score simulator",
@@ -124,8 +124,8 @@ export const features: Features[] = [
         title: "Smart Shopping",
         description:
             "Master the art of conscious spending and never overpay again",
-        gradient: "from-green-500 to-green-600",
-        borderColor: "hover:border-green-500",
+        gradient: "bg-primary",
+        borderColor: "hover:border-primary",
         icon: Target,
         features: [
             "Price comparison tools",
@@ -138,8 +138,8 @@ export const features: Features[] = [
         title: "Gamified Learning",
         description:
             "Earn points, unlock achievements, and compete with friends",
-        gradient: "from-yellow-500 to-yellow-600",
-        borderColor: "hover:border-yellow-500",
+        gradient: "bg-secondary",
+        borderColor: "hover:border-secondary",
         icon: Brain,
         features: [
             "Daily financial quests",
@@ -173,7 +173,7 @@ export const blog: Blog[] = [
         readTime: "3 min read",
         date: "Dec 15, 2024",
         category: "Budgeting",
-        gradient: "from-green-500 to-green-600",
+        gradient: "from-green-400 to-green-500",
         icon: DollarSign,
     },
     {
@@ -184,7 +184,7 @@ export const blog: Blog[] = [
         readTime: "5 min read",
         date: "Dec 12, 2024",
         category: "Investing",
-        gradient: "from-yellow-500 to-yellow-600",
+        gradient: "from-green-400 to-green-500",
         icon: BarChart3,
     },
     {
@@ -195,7 +195,7 @@ export const blog: Blog[] = [
         readTime: "4 min read",
         date: "Dec 10, 2024",
         category: "Credit",
-        gradient: "from-green-600 to-yellow-500",
+        gradient: "from-green-400 to-green-500",
         icon: Lightbulb,
     },
 ];

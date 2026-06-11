@@ -8,10 +8,15 @@ interface Props {
 
 const AchievementCard: React.FC<Props> = ({ achievement }) => {
   return (
-    <Card className={`text-center border-2 border-${achievement.color}-100 hover:border-${achievement.color}-500 transition-all duration-300 hover:shadow-lg`}>
+    <Card className={`border-0 text-center transition-all duration-300 hover:shadow-md rounded-xl`}>
       <CardContent className="pt-6">
-        <div className={`text-3xl font-bold text-${achievement.color}-500 mb-2 flex justify-center items-center`}>{achievement.symbol == "$" && achievement.symbol}<Counter targetNumber={achievement.targetNumber} duration={1000} />{achievement.symbol !== "$" && achievement.symbol}</div>
-        <p className="text-sm text-gray-600">{achievement.text}</p>
+        <div className={`text-2xl md:text-3xl font-bold flex justify-center items-center`}>
+          {achievement.symbol == "$" && achievement.symbol}
+          <Counter targetNumber={achievement.targetNumber} duration={1000} />
+          {achievement.symbol !== "$" && achievement.symbol}
+        </div>
+
+        <p className="text-sm">{achievement.text}</p>
       </CardContent>
     </Card>
   )

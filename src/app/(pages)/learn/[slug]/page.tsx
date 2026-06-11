@@ -1,21 +1,38 @@
 "use client"
 
-import Link from "next/link";
-import Markdown from "react-markdown";
-import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getChapterData } from "@/lib/api";
-import markdownStyles from "@/components/global/markdown-styles.module.css"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AlertCircle, ArrowLeft, ArrowRight, BookOpen, Brain, Calculator, CheckCircle, Clock, CreditCard, FileText, Headphones, Lightbulb, PiggyBank, Play, Star, Target, TrendingUp, Video } from "lucide-react";
+import Markdown from "react-markdown";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import {
+    AlertCircle,
+    ArrowLeft,
+    ArrowRight,
+    BookOpen,
+    Brain,
+    Calculator,
+    CheckCircle,
+    Clock,
+    CreditCard,
+    FileText,
+    Headphones,
+    Lightbulb,
+    PiggyBank,
+    Play,
+    Star,
+    Target,
+    TrendingUp,
+    Video
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
 import { Chapter } from "@/interfaces/chapter";
+import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
-import ChapterPageSkeleton from "@/components/skeleton/ChapterPageSkeleton";
+import { Progress } from "@/components/ui/progress";
 import { SaveProgressModal } from "@/components/global/SaveProgressModal";
-import { useSession } from "next-auth/react";
+import ChapterPageSkeleton from "@/components/skeleton/ChapterPageSkeleton";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { getChapterData } from "@/lib/api";
 
 interface LessonPageProps {
     params: {
@@ -71,7 +88,7 @@ export default function Page() {
 
     if (error || !chapter) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 flex items-center justify-center">
+            <div className="min-h-screen bg-linear-to-br from-green-50 via-yellow-50 to-green-100 flex items-center justify-center">
                 <div className="text-center">
                     <AlertCircle className="h-8 w-8 text-red-500 mx-auto mb-4" />
                     <p className="text-gray-600">{error || "Chapter not found"}</p>
@@ -154,26 +171,26 @@ export default function Page() {
 
     return (
         <main>
-            <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100">
+            <div className="min-h-screen bg-linear-to-br from-background via-white to-background">
                 <Navbar />
-                <div className="container mx-auto px-4 py-8">
-                    <div className="mb-8">
+                <div className="max-w-(--max-width-lg) mx-auto px-5 py-10">
+                    <div className="mb-10">
                         <div className="flex items-center gap-4 mb-4">
-                            <div className={`h-12 w-12 rounded-lg flex items-center justify-center bg-${chapter.color}-500 text-white`}>
+                            <div className={`h-12 w-12 rounded-xl flex items-center justify-center bg-primary text-white`}>
                                 <IconComponent className="h-6 w-6" />
                             </div>
                             <div>
-                                <h1 className="text-xl md:text-3xl font-bold text-gray-900">{chapter.title}</h1>
-                                <p className="text-sm md:text-base text-gray-600">{chapter.description}</p>
+                                <h1 className="text-xl md:text-3xl font-bold">{chapter.title}</h1>
+                                <p className="text-sm md:text-lg text-gray-500">{chapter.description}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-4 mb-4">
-                            <Badge variant="secondary">{chapter.difficulty}</Badge>
-                            <div className="flex items-center gap-1 text-sm text-gray-600">
+                            <Badge>{chapter.difficulty}</Badge>
+                            <div className="flex items-center gap-1 text-sm text-gray-500">
                                 <Clock className="h-4 w-4" />
                                 <span>{chapter.duration}</span>
                             </div>
-                            <div className="flex items-center gap-1 text-sm text-gray-600">
+                            <div className="flex items-center gap-1 text-sm text-gray-500">
                                 <BookOpen className="h-4 w-4" />
                                 <span>{chapter.lessons.length} lessons</span>
                             </div>
@@ -183,7 +200,7 @@ export default function Page() {
                                 <span>Progress: {completedLessons}/{chapter.lessons.length} lessons completed</span>
                                 <span>{Math.round(progress)}%</span>
                             </div>
-                            <Progress value={progress} className="h-2" />
+                            <Progress value={progress} className="h-2 bg-primary/10" />
                         </div>
                     </div>
                     <div className="grid gap-8 lg:grid-cols-[300px_1fr]">
@@ -194,9 +211,9 @@ export default function Page() {
                                     <Card
                                         key={lesson.id}
                                         className={`cursor-pointer transition-all ${index === currentLessonIndex
-                                            ? 'border-green-500 bg-green-50'
+                                            ? 'border-primary bg-background'
                                             : lesson.isCompleted
-                                                ? 'border-green-200 bg-green-25'
+                                                ? 'border-green-200'
                                                 : 'border-gray-200'
                                             }`}
                                         onClick={() => setCurrentLessonIndex(index)}
@@ -207,9 +224,9 @@ export default function Page() {
                                                     {getContentTypeIcon(lesson.type)}
                                                     <span className="text-sm font-medium">{lesson.title}</span>
                                                 </div>
-                                                {lesson.isCompleted && <CheckCircle className="h-4 w-4 text-green-500" />}
+                                                {lesson.isCompleted && <CheckCircle className="h-4 w-4 text-primary" />}
                                             </div>
-                                            <div className="flex items-center gap-2 text-xs text-gray-600">
+                                            <div className="flex items-center gap-2 text-xs text-gray-500">
                                                 <Clock className="h-3 w-3" />
                                                 <span>{lesson.duration}</span>
                                             </div>
@@ -234,7 +251,7 @@ export default function Page() {
                                             </div>
                                         </div>
                                         {currentLesson.isCompleted && (
-                                            <Badge className="bg-green-500 hover:bg-green-500">
+                                            <Badge className="bg-primary">
                                                 <CheckCircle className="h-3 w-3 mr-1" />
                                                 Completed
                                             </Badge>
@@ -243,7 +260,7 @@ export default function Page() {
                                 </CardHeader>
 
                                 <CardContent className="prose prose-gray max-w-none">
-                                    <div className={`${markdownStyles["markdown"]}`}>
+                                    <div className="markdown">
                                         <Markdown>
                                             {currentLesson.content}
                                         </Markdown>
@@ -251,10 +268,10 @@ export default function Page() {
                                 </CardContent>
                             </Card>
 
-                            <Card className="border-yellow-200 bg-yellow-50">
+                            <Card className="border-secondary/50 bg-secondary/10">
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-2 text-lg">
-                                        <Lightbulb className="h-5 w-5 text-yellow-600" />
+                                        <Lightbulb className="h-5 w-5 text-secondary" />
                                         Key Takeaways
                                     </CardTitle>
                                 </CardHeader>
@@ -262,7 +279,7 @@ export default function Page() {
                                     <ul className="space-y-2">
                                         {currentLesson.keyPoints.map((point, index) => (
                                             <li key={index} className="flex items-start gap-2">
-                                                <Star className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                                                <Star className="h-4 w-4 text-secondary mt-0.5 shrink-0" />
                                                 <span className="text-sm">{point}</span>
                                             </li>
                                         ))}
@@ -271,10 +288,10 @@ export default function Page() {
                             </Card>
 
                             {currentLesson.quiz && showQuiz && (
-                                <Card className="border-blue-200 bg-blue-50">
+                                <Card className="border-primary/50 bg-background">
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
-                                            <AlertCircle className="h-5 w-5 text-blue-600" />
+                                            <AlertCircle className="h-5 w-5 text-primary" />
                                             Quick Check
                                         </CardTitle>
                                     </CardHeader>
@@ -284,14 +301,14 @@ export default function Page() {
                                                 <p className="font-medium">{currentLesson.quiz.question}</p>
                                                 <div className="space-y-2">
                                                     {currentLesson.quiz.options.map((option, index) => (
-                                                        <label key={index} className="flex items-center gap-2 cursor-pointer p-2 rounded hover:bg-blue-100">
+                                                        <label key={index} className="flex items-center gap-2 cursor-pointer p-2 rounded hover:bg-primary/20">
                                                             <input
                                                                 type="radio"
                                                                 name="quiz-answer"
                                                                 value={index}
                                                                 checked={selectedAnswer === index}
                                                                 onChange={() => setSelectedAnswer(index)}
-                                                                className="text-blue-600"
+                                                                className="text-primary"
                                                             />
                                                             <span>{option}</span>
                                                         </label>
@@ -300,7 +317,7 @@ export default function Page() {
                                                 <Button
                                                     onClick={handleQuizSubmit}
                                                     disabled={selectedAnswer === null}
-                                                    className="bg-blue-500 hover:bg-blue-600"
+                                                    className="bg-primary hover:bg-green-600"
                                                 >
                                                     Submit Answer
                                                 </Button>
@@ -337,8 +354,8 @@ export default function Page() {
                                 </div>
 
                                 {currentLessonIndex === chapter.lessons.length - 1 ? (
-                                    <Button className="bg-green-500 hover:bg-green-600" asChild>
-                                        <Link href="/quiz">
+                                    <Button className="bg-primary hover:bg-green-600" asChild>
+                                        <Link href="/learn/quiz">
                                             Take Chapter Quiz
                                             <Play className="ml-2 h-4 w-4" />
                                         </Link>
@@ -346,7 +363,8 @@ export default function Page() {
                                 ) : (
                                     <Button
                                         onClick={handleCompleteLesson}
-                                        className="bg-green-500 hover:bg-green-600"
+                                        // disabled={currentLesson.quiz && !showQuizResult}
+                                        className="bg-primary hover:bg-green-600"
                                     >
                                         {currentLesson.quiz && !showQuizResult ? 'Complete Lesson' : 'Next Lesson'}
                                         <ArrowRight className="ml-2 h-4 w-4" />

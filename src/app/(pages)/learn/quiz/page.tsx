@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
-import { PiggyBank, Zap, CheckCircle, XCircle, ArrowRight, ArrowLeft, Trophy, Star, Clock, Brain, Target, RotateCcw } from 'lucide-react'
+import { CheckCircle, XCircle, ArrowRight, ArrowLeft, Trophy, Star, Clock, Brain, Target, RotateCcw } from 'lucide-react'
 import Link from "next/link"
 import { sampleQuestions } from "@/lib/chapter-data"
 import Navbar from "@/components/layout/Navbar"
@@ -73,66 +73,56 @@ export default function QuizPage() {
         const isGood = percentage >= 60
 
         return (
-            <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100">
-                {/* Header */}
-                <header className="px-4 lg:px-6 h-16 flex items-center border-b bg-white/90 backdrop-blur-sm">
-                    <Link href="/" className="flex items-center justify-center">
-                        <div className="relative">
-                            <PiggyBank className="h-8 w-8 text-green-500" />
-                            <Zap className="h-4 w-4 text-yellow-500 absolute -top-1 -right-1" />
-                        </div>
-                        <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
-                            Smart Spender
-                        </span>
-                    </Link>
-                </header>
+            <div className="min-h-screen bg-linear-to-br from-background via-white to-background">
+                
+                <Navbar />
 
                 <div className="container mx-auto px-4 py-8 max-w-2xl">
-                    <Card className="border-2 border-green-500 bg-gradient-to-br from-green-50 to-yellow-50">
+                    <Card className="border-2 border-primary bg-linear-to-br bg-background">
                         <CardContent className="p-8 text-center">
                             <div className="mb-6">
                                 {isExcellent ? (
-                                    <Trophy className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
+                                    <Trophy className="h-16 w-16 text-secondary mx-auto mb-4" />
                                 ) : isGood ? (
-                                    <Star className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                                    <Star className="h-16 w-16 text-primary mx-auto mb-4" />
                                 ) : (
-                                    <Target className="h-16 w-16 text-blue-500 mx-auto mb-4" />
+                                    <Target className="h-16 w-16 text-primary mx-auto mb-4" />
                                 )}
 
                                 <h1 className="text-3xl font-bold mb-2">
                                     {isExcellent ? "Excellent Work! 🎉" : isGood ? "Good Job! 👏" : "Keep Learning! 📚"}
                                 </h1>
-                                <p className="text-gray-600">
+                                <p className="text-gray-500">
                                     {isExcellent ? "You're a financial wizard!" : isGood ? "You're on the right track!" : "Practice makes perfect!"}
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-3 gap-4 mb-8">
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-green-500">{score}</div>
-                                    <div className="text-sm text-gray-600">Correct</div>
+                                    <div className="text-3xl font-bold text-primary">{score}</div>
+                                    <div className="text-sm text-gray-500">Correct</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-yellow-500">{percentage}%</div>
-                                    <div className="text-sm text-gray-600">Score</div>
+                                    <div className="text-3xl font-bold text-secondary">{percentage}%</div>
+                                    <div className="text-sm text-gray-500">Score</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-blue-500">+{score * 50}</div>
-                                    <div className="text-sm text-gray-600">Points</div>
+                                    <div className="text-3xl font-bold text-primary">+{score * 50}</div>
+                                    <div className="text-sm text-gray-500">Points</div>
                                 </div>
                             </div>
 
                             <div className="space-y-4">
                                 <Button
                                     onClick={resetQuiz}
-                                    className="bg-green-500 hover:bg-green-600 text-white w-full"
+                                    className="bg-primary hover:bg-green-600 text-white w-full"
                                 >
                                     <RotateCcw className="mr-2 h-4 w-4" />
                                     Try Again
                                 </Button>
                                 <Button
                                     variant="outline"
-                                    className="border-green-500 text-green-600 hover:bg-green-50 w-full"
+                                    className="border-primary text-green-600 hover:bg-green-50 w-full"
                                     asChild
                                 >
                                     <Link href="/learn">
@@ -149,23 +139,23 @@ export default function QuizPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100">
+        <div className="min-h-screen bg-linear-to-br from-background via-white to-background">
 
             <Navbar />
 
-            <div className="container mx-auto px-4 py-8 max-w-2xl">
-                <div className="mb-8">
+            <div className="container mx-auto px-5 py-10 max-w-2xl">
+                <div className="mb-10">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-gray-900">Financial Knowledge Quiz</h1>
-                            <p className="text-gray-600">Test your understanding of key financial concepts</p>
+                            <h1 className="text-2xl font-bold">Financial Knowledge Quiz</h1>
+                            <p className="text-gray-500">Test your understanding of key financial concepts</p>
                         </div>
-                        <Badge className="bg-green-100 text-green-800">
+                        <Badge className="bg-background text-primary">
                             Question {currentQuestion + 1} of {sampleQuestions.length}
                         </Badge>
                     </div>
 
-                    <Progress value={progress} className="h-3 mb-2" />
+                    <Progress value={progress} className="h-3 mb-2 bg-primary/10" />
                     <div className="flex justify-between text-sm text-gray-600">
                         <span>Progress: {Math.round(progress)}%</span>
                         <span>Score: {score}/{currentQuestion + (showResult ? 1 : 0)}</span>
@@ -175,10 +165,7 @@ export default function QuizPage() {
                 <Card className="mb-6">
                     <CardHeader>
                         <div className="flex items-center justify-between mb-2">
-                            <Badge variant={
-                                currentQ.difficulty === 'Easy' ? 'secondary' :
-                                    currentQ.difficulty === 'Medium' ? 'default' : 'destructive'
-                            }>
+                            <Badge>
                                 {currentQ.difficulty}
                             </Badge>
                             <Badge variant="outline">{currentQ.category}</Badge>
@@ -212,7 +199,7 @@ export default function QuizPage() {
                                     <Button
                                         onClick={handleNext}
                                         disabled={!selectedAnswer}
-                                        className="bg-green-500 hover:bg-green-600"
+                                        className="bg-primary hover:bg-green-600"
                                     >
                                         Submit Answer
                                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -226,7 +213,7 @@ export default function QuizPage() {
                                     : 'bg-red-50 border border-red-200'
                                     }`}>
                                     {parseInt(selectedAnswer) === currentQ.correctAnswer ? (
-                                        <CheckCircle className="h-6 w-6 text-green-500 mt-0.5" />
+                                        <CheckCircle className="h-6 w-6 text-primary mt-0.5" />
                                     ) : (
                                         <XCircle className="h-6 w-6 text-red-500 mt-0.5" />
                                     )}
@@ -256,7 +243,7 @@ export default function QuizPage() {
                                     </Button>
                                     <Button
                                         onClick={handleContinue}
-                                        className="bg-green-500 hover:bg-green-600"
+                                        className="bg-primary hover:bg-green-600"
                                     >
                                         {currentQuestion < sampleQuestions.length - 1 ? 'Next Question' : 'Finish Quiz'}
                                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -270,11 +257,11 @@ export default function QuizPage() {
                 <div className="grid grid-cols-3 gap-4">
                     {[{ text: "Time", value: "5 min", color: "green" },
                     { text: "Points", value: "+250", color: "yellow" },
-                    { text: "Level", value: "Beginner", color: "blue" }].map((item, index) => (
+                    { text: "Level", value: "Beginner", color: "green" }].map((item, index) => (
                         <Card key={index} className={`text-center border-${item.color}-200`}>
                             <CardContent className="p-4">
                                 <Clock className={`h-6 w-6 text-${item.color}-500 mx-auto mb-2`} />
-                                <div className="text-sm text-gray-600">{item.text}</div>
+                                <div className="text-sm text-gray-500">{item.text}</div>
                                 <div className="font-semibold">{item.value}</div>
                             </CardContent>
                         </Card>

@@ -88,31 +88,31 @@ export async function getAllChapters() {
   }
 }
 
-export async function updateLessonProgress(
-  slug: string,
-  lessonId: string,
-  isCompleted: boolean,
-): Promise<boolean> {
-  try {
-    const response = await fetch(`/api/chapters/${slug}/lessons/${lessonId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ isCompleted }),
-    })
+// export async function updateLessonProgress(
+//   slug: string,
+//   lessonId: string,
+//   isCompleted: boolean,
+// ): Promise<boolean> {
+//   try {
+//     const response = await fetch(`/api/chapters/${slug}/lessons/${lessonId}`, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ isCompleted }),
+//     })
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`)
+//     }
 
-    const result = await response.json()
-    return result.success
-  } catch (error) {
-    console.error("Error updating lesson progress:", error)
-    return false
-  }
-}
+//     const result = await response.json()
+//     return result.success
+//   } catch (error) {
+//     console.error("Error updating lesson progress:", error)
+//     return false
+//   }
+// }
 
 
 

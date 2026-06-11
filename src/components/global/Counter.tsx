@@ -48,8 +48,8 @@ export default function Counter({ targetNumber, duration }: CounterProps) {
   }, [hasStarted, targetNumber, duration]);
 
   return (
-    <div id="counter-section" className="text-4xl font-bold text-center">
+    <p id="counter-section">
       {count}
-    </div>
+    </p>
   );
 }

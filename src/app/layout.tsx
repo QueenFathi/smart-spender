@@ -1,18 +1,17 @@
-import localFont from "next/font/local";
 import { Metadata } from 'next';
-import "./globals.css";
-import "@radix-ui/themes/styles.css";
+import { Nunito, Nunito_Sans } from "next/font/google";
 import Footer from "@/components/layout/Footer";
+import "@radix-ui/themes/styles.css";
+import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -23,12 +22,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ 
+  children,
+}: Readonly<{
+  children: React.ReactNode; 
+}>) {
   return (
-    <html>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`${nunito.variable} ${nunitoSans.variable} antialiased`}
+    >
+      <body className='font-sans'>
         {children}
         <Footer />
       </body>

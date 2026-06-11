@@ -1,26 +1,20 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState, useActionState } from "react"
+import Link from "next/link"
+import { useSearchParams } from 'next/navigation';
+import { PiggyBank, Zap, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import { PiggyBank, Zap, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle } from "lucide-react"
-import Link from "next/link"
-import { useActionState } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { authenticate } from '@/lib/actions';
-import { useSearchParams } from 'next/navigation';
 // import { signIn } from "next-auth/react";
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') ?? "/profile";
-  const [errorMessage, formAction, isPending] = useActionState(
-    authenticate,
-    undefined,
-  );
-
+  const [errorMessage, formAction, isPending] = useActionState(authenticate, undefined);
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -47,17 +41,17 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 flex flex-col">
+    <div className="min-h-screen bg-linear-to-br from-green-50 via-yellow-50 to-green-100 flex flex-col">
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
           <Card className="border-2 border-green-200 shadow-lg">
             <CardHeader className="space-y-2 text-center">
               <div className="flex justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-gradient-to-r from-green-500 to-yellow-500 flex items-center justify-center">
+                <div className="h-16 w-16 rounded-full bg-linear-to-r from-green-500 to-yellow-500 flex items-center justify-center">
                   <div className="relative">
                     <PiggyBank className="h-8 w-8 text-white" />
                     <Zap className="h-4 w-4 text-white absolute -top-1 -right-1" />
-                </div>
+                  </div>
                 </div>
               </div>
               <CardTitle className="text-3xl">Welcome Back</CardTitle>
@@ -66,6 +60,12 @@ export default function LoginForm() {
 
             <CardContent className="space-y-6">
               <form action={formAction} className="space-y-4">
+                <input
+                  id="callbackUrl"
+                  type="hidden"
+                  name="redirectTo"
+                  value={searchParams.get("callbackUrl") ?? "/learn"}
+                />
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-sm font-medium">
                     Email Address
@@ -82,7 +82,7 @@ export default function LoginForm() {
                         setEmail(e.target.value)
                         if (errors.email) setErrors({ ...errors, email: undefined })
                       }}
-                      className={`pl-10 ${errors.email ? "border-red-500 focus-visible:ring-red-500" : "border-gray-300"}`}
+                      className={`pl-10 ${errors.email ? "border-red-500 focus-visible:ring-red-500 placeholder-gray-400" : "border-gray-300"}`}
                     />
                   </div>
                   {errors.email && (
@@ -109,7 +109,7 @@ export default function LoginForm() {
                         setPassword(e.target.value)
                         if (errors.password) setErrors({ ...errors, password: undefined })
                       }}
-                      className={`pl-10 pr-10 ${errors.password ? "border-red-500 focus-visible:ring-red-500" : "border-gray-300"}`}
+                      className={`pl-10 pr-10 ${errors.password ? "border-red-500 focus-visible:ring-red-500 placeholder-gray-400" : "border-gray-300"}`}
                     />
                     <button
                       type="button"
@@ -143,12 +143,10 @@ export default function LoginForm() {
                   </Link>
                 </div>
 
-                  <input type="hidden" name="redirectTo" value={callbackUrl}  />
                 <Button
                   type="submit"
                   aria-disabled={isPending}
-                   value={callbackUrl}
-                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 h-11"
+                  className="w-full bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 h-11"
                 >
                   {isPending ? (
                     <span className="flex items-center gap-2">
@@ -164,11 +162,11 @@ export default function LoginForm() {
                 </Button>
               </form>
               {errorMessage && (
-            <div className="flex gap-3 justify-center">
-              <AlertCircle className="h-5 w-5 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
-            </div>
-          )}
+                <div className="flex gap-3 justify-center">
+                  <AlertCircle className="h-5 w-5 text-red-500" />
+                  <p className="text-sm text-red-500">{errorMessage}</p>
+                </div>
+              )}
 
               <div className="text-center">
                 <p className="text-sm text-gray-600">
@@ -181,7 +179,7 @@ export default function LoginForm() {
             </CardContent>
           </Card>
 
-          
+
         </div>
       </div>
     </div>

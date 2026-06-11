@@ -4,10 +4,10 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 
+import BlogCard from "./BlogCard";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { blog } from "./HomepageData";
-import BlogCard from "./BlogCard";
 
 export default function BlogSection() {
     return (
